@@ -19,18 +19,19 @@ class JsonImporter(Importer):
     def import_data(self) -> list[Product]:
         with open(self.path, "r") as file:
             data = json.load(file)
-            product_list = list()
+
+            list_prod = list()
             for product in data:
-                itens = Product(
-                    product["id"],
+                itens_prod = Product(
                     product["product_name"],
+                    product["id"],
                     product["company_name"],
-                    product["manufacturing_date"],
-                    product["expiration_date"],
                     product["serial_number"],
+                    product["expiration_date"],
+                    product["manufacturing_date"],
                     product["storage_instructions"],)
-                product_list.append(itens)
-            return product_list
+                list_prod.append(itens_prod)
+            return list_prod
 
 
 class CsvImporter(Importer):
